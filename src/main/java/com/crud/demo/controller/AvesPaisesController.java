@@ -13,16 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crud.demo.domain.TontAve;
 import com.crud.demo.domain.TontAvesPais;
-import com.crud.demo.domain.TontZona;
 import com.crud.demo.repository.TontAvesPaisRepository;
-import com.crud.demo.repository.TontZonaRepository;
 
 @RestController()
-@RequestMapping("/avesPaises")
+@RequestMapping("/avesPais")
 public class AvesPaisesController {
 
-	@Autowired
-	TontZonaRepository zonaRepo;
+	
 	@Autowired
 	TontAvesPaisRepository avesPaisRepo;
 
@@ -37,17 +34,6 @@ public class AvesPaisesController {
 		return avesPais;
 	}
 	
-	@RequestMapping(value = "/zonas", method = RequestMethod.GET)
-	public List<TontZona> zonas(Map<String, Object> model) {
-		List<TontZona> zonas = null;
-		try {
-			zonas = (List<TontZona>) zonaRepo.findAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return zonas;
-	}
-
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String create(TontAvesPais avesPais) {
 		String response = "error";
